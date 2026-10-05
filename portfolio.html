@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shiva Kotte | Video Editor</title>
+<meta name="description" content="Video editor making promo videos, Meta ads and social media content that grab attention and help brands grow.">
+<style>
+  :root{
+    --bg:#05080c;
+    --card:rgba(120,190,255,.07);
+    --card-hover:rgba(120,190,255,.14);
+    --line:rgba(125,200,255,.14);
+    --accent:#7cc8ff;
+    --accent-deep:#7cc8ff;
+    --text:#ffffff;
+    --muted:#a9b8c6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+    color:var(--text);
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    line-height:1.6;
+    min-height:100vh;
+  }
+  /* soft glow on top of grid */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(60% 40% at 50% 0%, rgba(124,200,255,.16), transparent 70%);
+  }
+  .wrap{position:relative;max-width:920px;margin:0 auto;padding:32px 20px 64px}
+
+  nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+  .logo{font-weight:700;letter-spacing:.5px}
+  .logo span{color:var(--accent-deep)}
+  nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:.95rem}
+  nav a:hover{color:var(--accent-deep)}
+
+  .glass{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+
+  /* Hero */
+  .hero{display:flex;align-items:center;gap:24px;padding:28px}
+  .avatar{
+    width:120px;height:120px;border-radius:18px;flex-shrink:0;
+    background:linear-gradient(135deg,#bfe5ff,#7cc8ff);
+    display:grid;place-items:center;overflow:hidden;
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .hero h1{font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15;letter-spacing:.5px}
+  .hero p{color:var(--muted);margin-top:6px;font-size:1.05rem}
+  .hero p b{color:var(--accent-deep)}
+
+  section{margin-top:44px}
+  h2{font-size:1.4rem;margin-bottom:16px}
+  h2 .dot{color:var(--accent-deep)}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+
+  /* Help chips */
+  .chip{
+    padding:16px;display:flex;align-items:center;gap:12px;
+    transition:.2s;text-decoration:none;color:inherit;
+  }
+  .chip:hover{background:var(--card-hover);transform:translateY(-3px);border-color:var(--accent-deep)}
+  .chip .ic{
+    width:44px;height:44px;border-radius:50%;background:#e8f5ff;
+    display:grid;place-items:center;font-size:1.3rem;flex-shrink:0;
+  }
+  .chip strong{display:block;font-size:1.05rem}
+  .chip small{color:var(--muted);font-size:.78rem}
+
+  /* Videos */
+  .video{aspect-ratio:16/9;position:relative;overflow:hidden;cursor:pointer;transition:.2s}
+  .video:hover{border-color:var(--accent-deep);transform:translateY(-3px)}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video .ph{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:8px;font-weight:600;
+  }
+  .play{
+    width:46px;height:46px;border-radius:50%;background:var(--accent);
+    display:grid;place-items:center;
+  }
+  .play::after{
+    content:"";border-left:14px solid #05080c;border-top:9px solid transparent;
+    border-bottom:9px solid transparent;margin-left:4px;
+  }
+
+  /* Services */
+  .service{padding:26px 12px;text-align:center;font-weight:600;transition:.2s}
+  .service:hover{background:var(--card-hover);border-color:var(--accent-deep)}
+
+  /* About + Contact */
+  .about{padding:24px;color:var(--muted)}
+  .contact{padding:24px}
+  .contact p{margin-bottom:6px}
+  .contact a{color:var(--accent);text-decoration:none}
+  .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+  .btn{
+    display:inline-block;padding:12px 22px;border-radius:999px;font-weight:600;
+    text-decoration:none;transition:.2s;
+  }
+  .btn.primary{background:var(--accent);color:#05080c}
+  .btn.primary:hover{background:#fff}
+  .btn.ghost{border:1px solid var(--accent);color:var(--accent)}
+  .btn.ghost:hover{background:var(--accent);color:#05080c}
+
+  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:56px}
+
+  @media (max-width:640px){
+    .hero{flex-direction:column;text-align:center}
+    .grid3,.grid2{grid-template-columns:1fr}
+    nav a{margin-left:12px}
+    .video{aspect-ratio:16/9}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="logo">SHIVA<span>.</span>KOTTE</div>
+    <div>
+      <a href="#works">Short Form</a>
+      <a href="#longform">Long Form</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero glass">
+    <div class="avatar">
+      <img src="photo.png" alt="Shiva Kotte">
+    </div>
+    <div>
+      <h1>SHIVA KOTTE</h1>
+      <p>Video Editor for <b>Promos &amp; Meta Ads</b></p>
+    </div>
+  </header>
+
+  <!-- I HELP -->
+  <section>
+    <h2>I help businesses with Promo Videos<span class="dot">.</span></h2>
+    <div class="grid3">
+      <a class="chip glass" href="#works"><div class="ic">🎬</div><div><strong>Promos</strong><small>Launch Videos</small></div></a>
+      <a class="chip glass" href="#works"><div class="ic">✨</div><div><strong>Ads</strong><small>Meta Ads for Sales</small></div></a>
+      <a class="chip glass" href="#works"><div class="ic">📱</div><div><strong>Insta</strong><small>Social Media Content</small></div></a>
+    </div>
+  </section>
+
+  <!-- FEATURED WORKS -->
+  <section id="works">
+    <h2>Short Form Editing<span class="dot">.</span></h2>
+    <div class="grid3">
+      <!-- data-yt mein YouTube video ID daalo. Example: data-yt="dQw4w9WgXcQ" -->
+      <div class="video glass" data-yt="">
+        <div class="ph"><div class="play"></div>Video #1</div>
+      </div>
+      <div class="video glass" data-yt="">
+        <div class="ph"><div class="play"></div>Video #2</div>
+      </div>
+      <div class="video glass" data-yt="">
+        <div class="ph"><div class="play"></div>Video #3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LONG FORM -->
+  <section id="longform">
+    <h2>Long Form Editing<span class="dot">.</span></h2>
+    <div class="grid2">
+      <div class="video glass" data-yt="">
+        <div class="ph"><div class="play"></div>Video #1</div>
+      </div>
+      <div class="video glass" data-yt="">
+        <div class="ph"><div class="play"></div>Video #2</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>Services<span class="dot">.</span></h2>
+    <div class="service glass">Video Editing</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me<span class="dot">.</span></h2>
+    <div class="about glass">
+      I am a 18 year old video editor. I make promo videos, meta ads and social media content that grab attention and help brands grow.
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact<span class="dot">.</span></h2>
+    <div class="contact glass">
+      <p>Email: <a href="mailto:kotteshiva07@gmail.com">kotteshiva07@gmail.com</a></p>
+      <p>Number: <a href="tel:+919381524526">+91 9381524526</a></p>
+      <div class="btns">
+        <a class="btn primary" href="https://wa.me/919381524526" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn ghost" href="mailto:kotteshiva07@gmail.com">Send Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span id="yr"></span> Shiva Kotte. All rights reserved.</footer>
+</div>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Click par YouTube video play hoga (agar data-yt mein ID di hai)
+  document.querySelectorAll(".video").forEach(function(card){
+    card.addEventListener("click", function(){
+      var id = card.dataset.yt;
+      if(!id || card.querySelector("iframe")) return;
+      card.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id +
+        '?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+    });
+  });
+</script>
+</body>
+</html>
